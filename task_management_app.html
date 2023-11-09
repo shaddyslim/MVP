@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.task-form {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    background-color: #f9f9f9;
+}
+
+.task-form label, .task-form input, .task-form textarea, .task-form select {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.task-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.task-list li {
+    border: 1px solid #ccc;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background-color: #fff;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+
+
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Slim Management Application</title>
+    <script>
+        
+    document.addEventListener('DOMContentLoaded', function () {
+        const taskForm = document.getElementById('task-form');
+        const taskList = document.getElementById('tasks');
+
+        taskForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Get form input values
+            const taskName = document.getElementById('task-name').value;
+            const taskDescription = document.getElementById('task-description').value;
+            const dueDate = document.getElementById('due-date').value;
+            const priority = document.getElementById('priority').value;
+
+            // Create a new task item
+            const taskItem = document.createElement('li');
+            taskItem.innerHTML = `
+                <h3>${taskName}</h3>
+                <p>Description: ${taskDescription}</p>
+                <p>Due Date: ${dueDate}</p>
+                <p>Priority: ${priority}</p>
+            `;
+
+            // Add the new task item to the task list
+            taskList.appendChild(taskItem);
+
+            // Clear form inputs
+            taskForm.reset();
+        });
+    });
+
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Task Management Application</h1>
+    </header>
+    <main>
+        <section class="task-form">
+            <h2>Add a New Task</h2>
+            <form id="task-form">
+                <label for="task-name">Task Name</label>
+                <input type="text" id="task-name" placeholder="Enter task name" required>
+                <label for="task-description">Description</label>
+                <textarea id="task-description" placeholder="Enter task description"></textarea>
+                <label for="due-date">Due Date</label>
+                <input type="date" id="due-date">
+                <label for="priority">Priority</label>
+                <select id="priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                <button type="submit">Add Task</button>
+            </form>
+        </section>
+        <section class="task-list">
+            <h2>Task List</h2>
+            <ul id="tasks">
+                <!-- Task items will be added dynamically here -->
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
